@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<title>this</title>
+	<link rel="stylesheet" href="lib/css/base_style.css"/>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+</head>
+<body>
+	<!--[if lte IE 8]>
+	    <div class="error chromeframe">您的浏览器版本<strong>很旧很旧</strong>，为了正常地访问网站，请升级您的浏览器 <a target="_blank" href="http://browsehappy.com">立即升级</a></div>
+	<![endif]-->
+	
+	<div class="container">
+		<!-- 浏览器的各种高度区别: -->
+		<!-- 
+		标准浏览器下：
+		height:高度
+		innerHeight:高度＋补白
+		outerHeight:高度＋补白＋边框，参数为true时：高度＋补白＋边框＋边距 
+		-->
+		<style>
+			#test{
+				width:100px;
+				height: 50px;
+				padding: 10px;
+				margin: 10px;
+				border:1px solid #f90;
+				background: red;
+			}
+			#test2{
+				width:100px;
+				height: 50px;
+				padding: 10px;
+				margin: 10px;
+				border:1px solid #f90;
+				background: red;
+				-moz-box-sizing:content-box;   /*注意火狐要加私有前缀*/
+				box-sizing:content-box;
+			}
+		</style>
+
+		<div id="test">test</div> 
+
+		<div id="test2">test2</div>
+
+	</div>
+
+	
+
+
+
+
+	<!-- javascript 文件  -->
+	<script src='//code.jquery.com/jquery-1.10.2.min.js' ></script>
+	<script src='//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js' ></script>
+	<script>
+		//注意:我的盒子模型是: box-sizing: border-box;(bootstrap默认) 它在css中定义的高度已包含padding border的高度
+		// alert($("#test").height());         	//28px  (只是内容的高度)
+		// alert($("#test").innerHeight());    	//48px  padding + 内容
+		// alert($("#test").outerHeight());    	//50px  padding + 内容 + 边框   此方法对可见和隐藏元素均有效。
+		// alert($("#test").outerHeight(true));   //70px  padding + 内容 + 边框 + margin
+
+		//将盒子模型改为:box-sizing:content-box;  padding和border不被包含在定义的width和height之内
+		//alert($("#test2").height());         //50px  (也是内容的高度) 
+		//alert($("#test2").innerHeight());    //70px padding + 内容    
+		//alert($("#test2").outerHeight());    //72px padding + 内容 + 边框 
+		//alert($("#test2").outerHeight(true)); //92px padding + 内容 + 边框 + margin 
+
+		//offsetLeft offsetTop  offsetLeft、offsetTop属性：获取元素相对于文档左上角的坐标位置。
+		// alert($("#test")[0].offsetTop);  //js方法
+		// alert($("#test")[0].offsetLeft);  //js方法
+
+		// //jquery的offset方法:获取匹配元素在当前视口的相对偏移。返回的对象包含两个整型属性：top 和 left，以像素计。此方法只对可见元素有效。
+		// alert($("#test").offset().left);  //jquery方法
+		// alert($("#test").offset().top);   //jquery方法
+
+		// 区分innerHeight与clientHeight、innerWidth与clientWidth、scrollLeft与pageXOffset等属性
+		 /*window对象：
+
+		（1）innerHeight属性：窗口中文档显示区域的高度，不包括菜单栏、工具栏等部分。该属性可读可写。
+
+		     IE不支持该属性，IE中body元素的 clientHeight 属性与该属性相同。
+
+		（2)innerWidth属性：窗口中文档显示区域的宽度，同样不包括边框。该属性可读可写。
+
+		     IE不支持该属性，IE中body元素的clientWidth属性与该属性相同。
+
+		     clientHeight与clientWidth属性是只读的。
+
+		     另外，IE不支持outerWidth、outerHeight属性。
+
+		 (3)pageXOffset属性：整数只读属性，表示文档向右滚动过的像素数。
+
+		     IE不支持该属性，使用body元素的scrollLeft属性替代。
+
+		 (4)pageYOffset属性：整数只读属性，表示文档向下滚动过的像素数。
+
+		     IE不支持该属性，使用body元素的scrollTop属性替代。
+      兼容IE与DOM浏览器，如何获取窗口中文档显示区域的宽度及高度，使用?:条件语句，如下：
+
+ 		windows.innerWidth ? windows.innerWidth : document.body.clientWidth;
+
+ 		windows.innerHeight ? windows.innerHeight : document.body.clientHeight;
+
+ 		*/
+
+		alert(window.innerHeight);  //IE 不支持
+		alert(document.body.clientHeight);  //IE 支持
+		alert($('body')[0].clientHeight);  //IE 不支持
+
+	</script>
+</body>
+</html>

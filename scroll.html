@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src='//code.jquery.com/jquery-1.10.2.min.js' ></script>
+    <script type="text/javascript">
+        $(function () {
+            var oft = null;
+            $(document).click(function () {
+                oft = $("#d1");
+                $("#d1").append(oft.scrollTop() + "&nbsp;&nbsp;" + oft.scrollLeft() + "<br />");
+            });
+            var top = $("#d1").offset().top;
+            $("#div1").scroll(function () {
+                $("#div2").scrollTop($(this).scrollTop());
+                $("#div2").scrollLeft($(this).scrollLeft());
+                $("#btn1").scrollTop($(this).scrollTop());
+                $("#btn1").scrollLeft($(this).scrollLeft());
+
+                $("#d1").offset({ top: top });
+            });
+        })
+    </script>
+</head>
+<body style="height: 2200px; width: 2000px;">
+    <div id="div1" style="height: 700px; width: 500px; border: solid 1px red; overflow: auto; float:left;">
+        <div style="height: 2000px; width: 2000px; border: solid 1px green;">
+            <div id="d1" style="position: relative; top: 300px; left: 200px; width: 200px; height: 200px;
+                border: 1px solid red;">
+                left&nbsp;&nbsp;&nbsp;&nbsp;top<br />
+            </div>
+            
+        </div>
+    </div>
+    <div id="div2" style="height: 700px; width: 500px; border: solid 1px green; float:left; overflow:auto;">
+    <div style="height: 2000px; width: 2000px; border: solid 1px green;">
+            <div id="Div3" style="position: relative; top: 300px; left: 200px; width: 200px; height: 200px;
+                border: 1px solid red;">
+                left&nbsp;&nbsp;&nbsp;&nbsp;top<br />
+            </div>
+            
+        </div>
+    </div>
+    <input id="btn1" type="button" value="button"/>
+</body>
+</html>
